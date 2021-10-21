@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import skate.skate.model.Skate;
 import skate.skate.repository.crud.interfaceSkate;
 
 @Repository
@@ -22,5 +23,9 @@ public class RepositorioSkate {
     
     public skate.skate.model.Skate save(skate.skate.model.Skate skate){
         return crud.save(skate);
+    }
+
+    public void delete(Skate skate) {
+        crud.delete(skate);
     }
 }

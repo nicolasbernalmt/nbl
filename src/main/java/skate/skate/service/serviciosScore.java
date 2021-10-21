@@ -33,4 +33,29 @@ public class serviciosScore {
             }
         }             
     }
+   public Score update(Score score){
+        if(score.getIdScore()!=null){
+            Optional<Score> e= metodosCrud.getScore(score.getIdScore());
+            if(!e.isEmpty()){
+                if(score.getMessageText()!=null){
+                    e.get().setMessageText(score.getMessageText());
+                }
+                metodosCrud.save(e.get());
+                return e.get();
+            }else{
+                return score;
+            }
+        }else{
+            return score;
+        }
+    }
+
+    public boolean deleteScore(int scoreId) {
+        Boolean aBoolean = getScore(scoreId).map(score -> {
+            metodosCrud.delete(score);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
+    
 }
